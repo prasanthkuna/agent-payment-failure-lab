@@ -1,0 +1,25 @@
+{
+  "name": "agent-payment-failure-lab",
+  "version": "0.1.0",
+  "description": "Executable failure profiles for autonomous and stablecoin payment integrations",
+  "license": "Apache-2.0",
+  "type": "module",
+  "packageManager": "npm@10.9.0",
+  "engines": { "node": ">=20" },
+  "bin": {
+    "apf-lab": "./scripts/run-lab.mjs"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "lab": "npx tsx scripts/run-lab.ts",
+    "lab:json": "npx tsx scripts/run-lab.ts --format json",
+    "lab:junit": "npx tsx scripts/run-lab.ts --format junit",
+    "lab:sarif": "npx tsx scripts/run-lab.ts --format sarif",
+    "typecheck": "tsc -p packages/core/tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}
