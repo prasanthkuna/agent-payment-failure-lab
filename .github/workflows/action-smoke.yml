@@ -1,0 +1,29 @@
+name: Action smoke test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  composite-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./
+        with:
+          profiles: APF-003
+          format: json
+          artifact-name: apf-smoke
+
+  cli-profiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npm run lab -- --profiles APF-003,APF-004 --format junit --output /tmp/apf.xml
+      - run: test -f /tmp/apf.xml

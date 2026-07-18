@@ -1,8 +1,11 @@
 # Agent Payment Failure Lab
 
-Executable tests that detect failures in autonomous and stablecoin payment integrations.
+[![CI](https://github.com/prasanthkuna/agent-payment-failure-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/prasanthkuna/agent-payment-failure-lab/actions/workflows/ci.yml)
+[![evidence](https://img.shields.io/badge/evidence-public-blue)](https://github.com/prasanthkuna/railguard-new/tree/master/evidence)
 
-> **Build first, grant after.** Ship this lab, then apply for Base / CDP / Stellar / NLnet with proof — not roadmaps.
+Executable adversarial tests for autonomous and stablecoin payment integrations.
+
+> **Use in CI:** `uses: prasanthkuna/agent-payment-failure-lab@v0.1.0` — see [docs/INTEGRATION.md](./docs/INTEGRATION.md)
 
 ## Profiles
 
@@ -21,20 +24,24 @@ Executable tests that detect failures in autonomous and stablecoin payment integ
 npm install
 npm test
 npm run lab
-npm run lab:sarif > evidence.sarif
+npm run lab -- --profiles APF-003 --format sarif --output evidence.sarif
 ```
 
-## Output
+## GitHub Action
 
-```json
-{
-  "profile": "APF-003",
-  "result": "PASS",
-  "fixture": "fixed-cdp",
-  "invariant": "budget must remain reserved after broadcast",
-  "severity": "critical",
-  "evidence_hash": "..."
-}
+```yaml
+- uses: prasanthkuna/agent-payment-failure-lab@v0.1.0
+  with:
+    profiles: APF-003,APF-004
+    format: sarif
+```
+
+## CLI options
+
+```text
+--profiles APF-001,APF-003   Run specific profiles
+--format json|junit|sarif     Output format
+--output path                 Write to file
 ```
 
 ## Ecosystem map
@@ -44,6 +51,12 @@ npm run lab:sarif > evidence.sarif
 | x402-guard | APF-001, APF-002 |
 | railguard-cdp | APF-003, APF-004, APF-005 |
 | railguard-new | APF-006 |
+
+## Documentation
+
+- [INTEGRATION.md](./docs/INTEGRATION.md) — 5-minute CI setup
+- [POSTMORTEM-APF-003](./docs/POSTMORTEM-APF-003.md) — crash-after-broadcast bug
+- [Public evidence](https://github.com/prasanthkuna/railguard-new/tree/master/evidence)
 
 ## License
 

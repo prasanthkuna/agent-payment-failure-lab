@@ -1,0 +1,73 @@
+name: Agent Payment Failure Lab
+description: Run adversarial payment failure profiles (APF-001 through APF-006) in CI
+author: Prasanth Kuna
+branding:
+  icon: shield
+  color: blue
+
+inputs:
+  profiles:
+    description: Comma-separated profile IDs (e.g. APF-003,APF-004). Default all.
+    required: false
+    default: ""
+  format:
+    description: Output format — json, junit, or sarif
+    required: false
+    default: sarif
+  upload-artifact:
+    description: Upload evidence as workflow artifact
+    required: false
+    default: "true"
+  artifact-name:
+    description: Artifact name for uploaded evidence
+    required: false
+    default: apf-evidence
+
+outputs:
+  pass:
+    description: Whether all selected profiles passed
+    value: ${{ steps.run.outputs.pass }}
+  evidence-path:
+    description: Path to generated evidence file
+    value: ${{ steps.run.outputs.evidence-path }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci --no-fund --no-audit
+      working-directory: ${{ github.action_path }}
+
+    - name: Run failure profiles
+      id: run
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: |
+        ARGS="--format ${{ inputs.format }} --output /tmp/apf-evidence.${{ inputs.format }}"
+        if [ -n "${{ inputs.profiles }}" ]; then
+          ARGS="$ARGS --profiles ${{ inputs.profiles }}"
+        fi
+        npx tsx scripts/run-lab.ts $ARGS
+        echo "evidence-path=/tmp/apf-evidence.${{ inputs.format }}" >> "$GITHUB_OUTPUT"
+        echo "pass=true" >> "$GITHUB_OUTPUT"
+
+    - name: Upload evidence artifact
+      if: inputs.upload-artifact == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: /tmp/apf-evidence.${{ inputs.format }}
+        retention-days: 30
+
+    - name: Upload SARIF to code scanning
+      if: inputs.format == 'sarif'
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: /tmp/apf-evidence.sarif
+      continue-on-error: true
