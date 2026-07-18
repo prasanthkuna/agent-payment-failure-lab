@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto"
 import { ALL_PROFILES } from "./profiles/index.js"
-import type { FixtureKind, ProfileEvidence, ProfileResult } from "../types.js"
+import type { FixtureKind, ProfileEvidence, ProfileResult } from "./types.js"
 
 export interface RunOptions {
   profiles?: string[]

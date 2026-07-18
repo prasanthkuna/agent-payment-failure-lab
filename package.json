@@ -5,7 +5,9 @@
   "license": "Apache-2.0",
   "type": "module",
   "packageManager": "npm@10.9.0",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "bin": {
     "apf-lab": "./scripts/run-lab.mjs"
   },
@@ -18,6 +20,7 @@
     "typecheck": "tsc -p packages/core/tsconfig.json --noEmit"
   },
   "devDependencies": {
+    "@types/node": "^22.20.1",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"

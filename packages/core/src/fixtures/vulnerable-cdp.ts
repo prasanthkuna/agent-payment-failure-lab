@@ -19,7 +19,7 @@ export class VulnerableCdpExecutor {
   }
 
   setPolicyHash(hash: string): void {
-    this.currentPolicyHash = hash
+    this.payment.currentPolicyHash = hash
   }
 
   approve(hash: string): void {
@@ -50,7 +50,7 @@ export class FixedCdpExecutor {
   }
 
   setPolicyHash(hash: string): void {
-    this.currentPolicyHash = hash
+    this.payment.currentPolicyHash = hash
   }
 
   approve(hash: string): void {
@@ -58,7 +58,7 @@ export class FixedCdpExecutor {
   }
 
   ensurePayable(): void {
-    if (this.payment.approvalHash !== this.currentPolicyHash) {
+    if (this.payment.approvalHash !== this.payment.currentPolicyHash) {
       throw new Error("stale approval")
     }
   }
