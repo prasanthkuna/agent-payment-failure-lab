@@ -3,3 +3,6 @@ dist/
 evidence/
 *.sarif
 .DS_Store
+*.log
+*.pdf
+Prasanth_*

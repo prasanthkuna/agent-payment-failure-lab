@@ -98,7 +98,7 @@ npm run lab -- --profiles APF-003 --format sarif --output results.sarif
 
 ## Testing your own integration (future)
 
-Adapter support is planned. Today, profiles run in-memory fixtures. To validate your CDP/x402 implementation, run the corresponding tests in `railguard-cdp` or `x402-guard` alongside this Action.
+Adapter support is planned. Today, profiles run in-memory fixtures. To validate your CDP/x402 implementation, run the corresponding tests in `coinbase/` (Railguard) or `x402-guard` alongside this Action.
 
 ## Support
 

@@ -49,7 +49,7 @@ npm run lab -- --profiles APF-003 --format sarif --output evidence.sarif
 | Source repo | Profiles |
 |-------------|----------|
 | x402-guard | APF-001, APF-002 |
-| railguard-cdp | APF-003, APF-004, APF-005 |
+| coinbase/ (Railguard) | APF-003, APF-004, APF-005 |
 | railguard-new | APF-006 |
 
 ## Documentation
