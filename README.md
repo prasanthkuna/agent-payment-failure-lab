@@ -1,7 +1,7 @@
 # Agent Payment Failure Lab
 
 [![CI](https://github.com/prasanthkuna/agent-payment-failure-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/prasanthkuna/agent-payment-failure-lab/actions/workflows/ci.yml)
-[![evidence](https://img.shields.io/badge/evidence-public-blue)](https://github.com/prasanthkuna/railguard-new/tree/master/evidence)
+[![evidence](https://img.shields.io/badge/evidence-public-blue)](https://github.com/prasanthkuna/railguard-protocol/tree/master/evidence)
 
 Executable adversarial tests for autonomous and stablecoin payment integrations.
 
@@ -50,13 +50,13 @@ npm run lab -- --profiles APF-003 --format sarif --output evidence.sarif
 |-------------|----------|
 | x402-guard | APF-001, APF-002 |
 | coinbase/ (Railguard) | APF-003, APF-004, APF-005 |
-| railguard-new | APF-006 |
+| railguard-protocol | APF-006 |
 
 ## Documentation
 
 - [INTEGRATION.md](./docs/INTEGRATION.md) — 5-minute CI setup
 - [POSTMORTEM-APF-003](./docs/POSTMORTEM-APF-003.md) — crash-after-broadcast bug
-- [Public evidence](https://github.com/prasanthkuna/railguard-new/tree/master/evidence)
+- [Public evidence](https://github.com/prasanthkuna/railguard-protocol/tree/master/evidence)
 
 ## License
 
