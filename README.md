@@ -1,9 +1,13 @@
-# Agent Payment Failure Lab
+# Railguard Failure Lab
 
 [![CI](https://github.com/prasanthkuna/agent-payment-failure-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/prasanthkuna/agent-payment-failure-lab/actions/workflows/ci.yml)
-[![evidence](https://img.shields.io/badge/evidence-public-blue)](https://github.com/prasanthkuna/railguard-protocol/tree/master/evidence)
 
-Executable adversarial tests for autonomous and stablecoin payment integrations.
+Executable adversarial tests for autonomous stablecoin payments. Owns the **[Failure Atlas](./atlas/README.md)** taxonomy (APF-001…).
+
+```bash
+railguard attack   # from railguard-gateway repo, or:
+npm run lab
+```
 
 > **Use in CI:** `uses: prasanthkuna/agent-payment-failure-lab@v0.1.0` — see [docs/INTEGRATION.md](./docs/INTEGRATION.md)
 
@@ -49,7 +53,7 @@ npm run lab -- --profiles APF-003 --format sarif --output evidence.sarif
 | Source repo | Profiles |
 |-------------|----------|
 | x402-guard | APF-001, APF-002 |
-| coinbase/ (Railguard) | APF-003, APF-004, APF-005 |
+| railguard-gateway/ | APF-003, APF-004, APF-005 |
 | railguard-protocol | APF-006 |
 
 ## Documentation
